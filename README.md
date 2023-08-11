@@ -46,8 +46,9 @@ This requires the current user to ssh into localhost.
 The RHEL 9.2 system will act as the image build server to create the Microshift image.
 Run the playbook to create an image with the microshift package and configurations on the RHEL system:
 ```bash
-ansible-playbook playbook/microshift_image_build.yml
+ansible-playbook -i localhost, playbooks/microshift_image_build.yml
 ```
+For more details, refer to the image builder role [README](https://github.com/redhat-cop/edge.microshift/blob/main/roles/image_builder/README.md)
 
 ### Deploy application
 To deploy an application on a running microshift system refer to the app role [README](https://github.com/redhat-cop/edge.microshift/blob/main/roles/app/README.md)

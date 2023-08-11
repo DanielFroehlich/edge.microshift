@@ -3,6 +3,9 @@ Role Name
 
 This role automates the setup server and [osbuild](https://www.osbuild.org/) [compose builds](https://www.osbuild.org/guides/user-guide/user-guide.html) using the osbuild backend [Weldr](https://weldr.io/) API with Microshift and necessary dependencies installed.
 
+It uses the [infra.osbuild.builder](https://github.com/redhat-cop/infra.osbuild/blob/main/roles/builder/README.md) role, see also the docs over there.
+
+
 Requirements
 ------------
 
@@ -18,7 +21,7 @@ Required: false
 
 *Use microshift_rhsm_repos to set the rhsm repos used for the Microshift package*
 
-List of [RHSM](https://access.redhat.com/products/red-hat-subscription-management/) repositories to make available to the 
+List of [RHSM](https://access.redhat.com/products/red-hat-subscription-management/) repositories to make available to the
 [osbuild](https://www.osbuild.org/) [compose builds](https://www.osbuild.org/guides/user-guide/user-guide.html).
 
 Example:
@@ -36,7 +39,7 @@ Required: false
 
 *Use microshift_image_custom_repos to use community repos for the Microshift package*
 
-List of custom repositories to make available to the 
+List of custom repositories to make available to the
 [osbuild](https://www.osbuild.org/) [compose builds](https://www.osbuild.org/guides/user-guide/user-guide.html).
 
 Example:
@@ -66,7 +69,7 @@ Type: string
 Required: false
 
 This is the name of the [osbuild blueprint](https://www.osbuild.org/guides/blueprint-reference/blueprint-reference.html?highlight=distro#distribution-selection-with-blueprints)
-to use. The blueprint will be auto generated based on the contents of the 
+to use. The blueprint will be auto generated based on the contents of the
 `microshift_image_compose_customizations` role variable. In the event an of an [rpm-ostree](https://rpm-ostree.readthedocs.io/en/stable/)
 based compose type specified by the `microshift_image_compose_type` role variable, the
 blueprint name defined in this variable will use used to define the resulting [ostree](https://ostreedev.github.io/ostree/)
@@ -91,8 +94,8 @@ on operating system (RHEL, CentOS Stream, or Fedora) and release version therin.
 
 For RHEL, the Red Hat Enterprise Linux Documentation Team publishes these and they can be found [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/composing_a_customized_rhel_system_image/index#composer-output-formats_composer-description).
 
-For CentOS Stream and Fedora, you will need to reference the output of the 
-`composer-cli compose types` command on the osbuild server (this can also be 
+For CentOS Stream and Fedora, you will need to reference the output of the
+`composer-cli compose types` command on the osbuild server (this can also be
 done on RHEL if preferred).
 
 ### microshift_image_pubkey
@@ -114,7 +117,7 @@ microshift_image_pubkey: "{{ lookup('file', '~/.ssh/id_rsa.pub', errors='warn') 
 Type: dict
 Required: false
 
-This variable is the YAML dict expression of 
+This variable is the YAML dict expression of
 [osbuild blueprint](https://www.osbuild.org/guides/blueprint-reference/blueprint-reference.html) customizations.
 
 Example:
@@ -132,7 +135,7 @@ microshift_image_compose_customizations:
     enabled: ["firewalld"]
   firewalld.services:
     enabled: ["ssh", "https"]
-    
+
 ```
 
 ### microshift_image_firewall_options
@@ -252,7 +255,7 @@ microshift_image_lvms_pod_volumes:
 Type: string
 Required: false
 
-Ingress that is the API gateway 
+Ingress that is the API gateway
 
 Example:
 ```yaml
